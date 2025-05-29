@@ -1,4 +1,5 @@
 public class Servico {
+    private int codServico;
     private String descricao;
     private double preco;
     private double comissao;
@@ -7,7 +8,8 @@ public class Servico {
 
 
     //construtor
-    public Servico(String descricao, double preco, double comissao, String pecas, String funcionario) {
+    public Servico(int codServico, String descricao, double preco, double comissao, String pecas, String funcionario) {
+        this.codServico = codServico;
         this.descricao = descricao;
         this.preco = preco;
         this.comissao = comissao;
@@ -55,4 +57,8 @@ public class Servico {
     public void setFuncionario(String funcionario) {
         this.funcionario = funcionario;
     }
+
+    public int getCodServico() { return codServico; }
+
+    public void setCodServico(int codServico) { this.codServico = codServico; }
 }
