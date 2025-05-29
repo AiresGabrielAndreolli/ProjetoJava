@@ -2,6 +2,7 @@ public class Cliente extends Pessoa implements iPessoa{
     private String carro;
     private String placa;
 
+
     //construtor
     public Cliente(String nome, int idade, double cpf, String carro, String placa) {
         super(nome, idade, cpf);

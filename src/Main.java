@@ -21,6 +21,8 @@ public class Main {
             System.out.println("2- Remoção");
             System.out.println("3- Busca de Clientes");
             System.out.println("4- Busca de Serviços");
+            System.out.println("5- Métodos Cliente");
+            System.out.println("6- Métodos Serviço");
             System.out.println("");
             int i = plinio.nextInt();
             switch(i)
@@ -75,7 +77,6 @@ public class Main {
                             setor = plinio.next();
                             Funcionario f1 = new Funcionario(nomeFunc,idadeFunc,cpfFunc,salarioFixo,setor);
                             listaFunc.add(f1);
-                            f1.mostraDados();
                         break;
 
                         case 3:
@@ -125,8 +126,10 @@ public class Main {
                             nomeCliente = plinio.next();
 
                             for (Cliente c : listaCliente) {
-                                if (c.getNome().equals(nomeCliente))
+                                if (c.getNome().equals(nomeCliente)) {
                                     listaCliente.remove(c);
+                                    break;
+                                }
                             }
 
                         case 2:
@@ -137,8 +140,10 @@ public class Main {
                             nomeFuncionario = plinio.next();
 
                             for (Cliente c : listaCliente) {
-                                if (c.getNome().equals(nomeFuncionario))
+                                if (c.getNome().equals(nomeFuncionario)){
                                     listaCliente.remove(c);
+                                     break;
+                                }
                             }
 
                         case 3:
@@ -149,8 +154,10 @@ public class Main {
                             codigoServico = plinio.nextInt();
 
                             for (Servico s: listaServ) {
-                                if (s.getCodServico() == codigoServico)
+                                if (s.getCodServico() == codigoServico) {
                                     listaServ.remove(s);
+                                    break;
+                                }
                             }
 
 
@@ -169,6 +176,9 @@ public class Main {
                     System.out.println("Nome:");
                     nomeCli = plinio.next();
 
+                    if(listaCliente.isEmpty()){
+                        System.out.println("Não há nenhum cliente cadastrado!");
+                    }
                     for (Cliente cliente : listaCliente) {
                         if (cliente.getNome().startsWith(nomeCli)) {
                             System.out.println("---------------------------------------");
@@ -178,6 +188,9 @@ public class Main {
                             System.out.println("Carro: " + cliente.getCarro());
                             System.out.println("Placa: " + cliente.getPlaca());
                             System.out.println("---------------------------------------");
+                        }
+                        else{
+                            System.out.println("Cliente não encontrado!");
                         }
                     }
 
@@ -191,6 +204,9 @@ public class Main {
                     System.out.println("Código:");
                     codServico = plinio.nextInt();
 
+                    if(listaServ.isEmpty()){
+                        System.out.println("Não há nenhum serviço cadastrado!");
+                    }
                     for (Servico servico : listaServ) {
                         if (servico.getCodServico() == codServico) {
                             System.out.println("---------------------------------------");
@@ -202,9 +218,88 @@ public class Main {
                             System.out.println("Preço: " + servico.getPreco());
                             System.out.println("---------------------------------------");
                         }
+                        else{
+                            System.out.println("Serviço não encontrado!");
+                        }
                     }
 
                 break;
+
+                case 5:
+                    if(listaCliente.isEmpty()){
+                        System.out.println("Não há nenhum cliente cadastrado!");
+                        break;
+                    }
+                    int u = 0;
+                    System.out.println("1- Mais velho");
+                    System.out.println("2- Mais novo");
+                    System.out.println("3- Qtd 60+");
+                    System.out.println("4- Qtd -18");
+                    System.out.println("5- Idade média dos clientes");
+                    System.out.println("");
+                    switch(u)
+                    {
+                        case 1:
+                            int maisVelho = 0;
+                            for(Cliente c: listaCliente){
+                                if(c.getIdade()>maisVelho){
+                                    maisVelho = c.getIdade();
+                                }
+                            }
+                            for(Cliente c: listaCliente){
+                                if(c.getIdade() == maisVelho){
+                                    System.out.println("O cliente mais velho é "+c.getNome()+" e tem "+c.getIdade()+" anos.");
+                                }
+                            }
+
+                        break;
+
+                        case 2:
+                            int maisNovo = 300;
+                            for(Cliente c: listaCliente){
+                                if(c.getIdade()<maisNovo){
+                                    maisNovo = c.getIdade();
+                                }
+                            }
+                            for(Cliente c: listaCliente){
+                                if(c.getIdade() == maisNovo){
+                                    System.out.println("O cliente mais novo é "+c.getNome()+" e tem "+c.getIdade()+" anos.");
+                                }
+                            }
+                        break;
+
+                        case 3:
+                            int qtdMaiorSes = 0;
+                            for(Cliente c: listaCliente){
+                                if(c.getIdade()>60){
+                                    qtdMaiorSes+=1;
+                                }
+                            }
+                            System.out.println("Tem "+qtdMaiorSes+" clientes maiores de 60 anos na base de dados.");
+                        break;
+
+                        case 4:
+                            int qtdMenorDezo = 0;
+                            for(Cliente c: listaCliente){
+                                if(c.getIdade()<18){
+                                    qtdMenorDezo+=1;
+                                }
+                            }
+                            System.out.println("Tem "+qtdMenorDezo+" clientes menores de 18 anos na base de dados.");
+                        break;
+
+                        case 5:
+                            int qtdCliente = 0;
+                            int somaIdade = 0;
+                            float mediaIdade = 0;
+                            for(Cliente c: listaCliente){
+                                qtdCliente+=1;
+                                somaIdade += c.getIdade();
+                            }
+                            mediaIdade = somaIdade/qtdCliente;
+                            System.out.println("Média das idades dos clientes é: "+mediaIdade);
+
+                    }
 
 
 
