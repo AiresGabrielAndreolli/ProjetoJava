@@ -12,6 +12,23 @@ public class Main {
         ArrayList <Servico> listaServ = new ArrayList<>();
         Scanner plinio = new Scanner(System.in);
 
+        Cliente c1 = new Cliente("Mateus",16,560,"Fusca","mmm");
+        Cliente c2 = new Cliente("Gabriel",18,483,"Gol","ggg");
+        Cliente c3 = new Cliente("Pamela",20,588,"Corsa","ppp");
+        listaCliente.add(c1);
+        listaCliente.add(c2);
+        listaCliente.add(c3);
+
+        Servico s1 = new Servico(01,"Troca de Oleo",200,20,"Lata de Oleo","Zé");
+        Servico s2 = new Servico(02,"Troca de Pneu",1000,100,"Pneus","Zé");
+        Servico s3 = new Servico(03,"Troca de Parachoque",500,50,"Parachoque","Zé");
+        listaServ.add(s1);
+        listaServ.add(s2);
+        listaServ.add(s3);
+
+        Funcionario f1 = new Funcionario("Zé",44,90,1500,"Mecânica");
+        listaFunc.add(f1);
+
         System.out.println("Seja bem vindo ao nosso sistema!");
         System.out.println("Digite 'enter' para continuar");
         plinio.nextLine();
@@ -28,7 +45,7 @@ public class Main {
             switch(i)
             {
                 case 1:
-                    System.out.println("Cadastro degue?");
+                    System.out.println("Cadastro de que?");
                     System.out.println("1- Cliente");
                     System.out.println("2- Funcionário");
                     System.out.println("3- Serviço");
@@ -53,8 +70,8 @@ public class Main {
                             carro = plinio.next();
                             System.out.println("Placa: ");
                             placa = plinio.next();
-                            Cliente c1 = new Cliente(nomeCli,idadeCli,cpfCli,carro,placa);
-                            listaCliente.add(c1);
+                            Cliente c4 = new Cliente(nomeCli,idadeCli,cpfCli,carro,placa);
+                            listaCliente.add(c4);
                         break;
 
                         case 2:
@@ -75,8 +92,8 @@ public class Main {
                             salarioFixo = plinio.nextDouble();
                             System.out.println("Setor: ");
                             setor = plinio.next();
-                            Funcionario f1 = new Funcionario(nomeFunc,idadeFunc,cpfFunc,salarioFixo,setor);
-                            listaFunc.add(f1);
+                            Funcionario f2 = new Funcionario(nomeFunc,idadeFunc,cpfFunc,salarioFixo,setor);
+                            listaFunc.add(f2);
                         break;
 
                         case 3:
@@ -100,8 +117,8 @@ public class Main {
                             pecas = plinio.next();
                             System.out.println("Funcionário: ");
                             funcionario = plinio.next();
-                            Servico s1 = new Servico(codigoServico, descricao, preco, comissao, pecas, funcionario);
-                            listaServ.add(s1);
+                            Servico s4 = new Servico(codigoServico, descricao, preco, comissao, pecas, funcionario);
+                            listaServ.add(s4);
 
 
 
@@ -110,7 +127,7 @@ public class Main {
                 break;
 
                 case 2:
-                    System.out.println("Remoção degue?");
+                    System.out.println("Remoção de que?");
                     System.out.println("1- Cliente");
                     System.out.println("2- Funcionário");
                     System.out.println("3- Serviço");
@@ -128,9 +145,11 @@ public class Main {
                             for (Cliente c : listaCliente) {
                                 if (c.getNome().equals(nomeCliente)) {
                                     listaCliente.remove(c);
+                                    System.out.println("Cliente removido!");
                                     break;
                                 }
                             }
+                        break;
 
                         case 2:
                             //remoção de funcionário
@@ -142,9 +161,11 @@ public class Main {
                             for (Cliente c : listaCliente) {
                                 if (c.getNome().equals(nomeFuncionario)){
                                     listaCliente.remove(c);
+                                    System.out.println("Funcionário removido!");
                                      break;
                                 }
                             }
+                        break;
 
                         case 3:
                             //remoção de serviço
@@ -156,6 +177,7 @@ public class Main {
                             for (Servico s: listaServ) {
                                 if (s.getCodServico() == codigoServico) {
                                     listaServ.remove(s);
+                                    System.out.println("Serviço removido!");
                                     break;
                                 }
                             }
@@ -192,6 +214,7 @@ public class Main {
                         else{
                             System.out.println("Cliente não encontrado!");
                         }
+                        break;
                     }
 
 
@@ -221,6 +244,7 @@ public class Main {
                         else{
                             System.out.println("Serviço não encontrado!");
                         }
+                      break;
                     }
 
                 break;
@@ -237,6 +261,7 @@ public class Main {
                     System.out.println("4- Qtd -18");
                     System.out.println("5- Idade média dos clientes");
                     System.out.println("");
+                    u = plinio.nextInt();
                     switch(u)
                     {
                         case 1:
@@ -285,7 +310,7 @@ public class Main {
                                     qtdMenorDezo+=1;
                                 }
                             }
-                            System.out.println("Tem "+qtdMenorDezo+" clientes menores de 18 anos na base de dados.");
+                            System.out.println("Tem "+qtdMenorDezo+" cliente(s) menores de 18 anos na base de dados.");
                         break;
 
                         case 5:
@@ -300,12 +325,90 @@ public class Main {
                             System.out.println("Média das idades dos clientes é: "+mediaIdade);
 
                     }
+                break;
+
+                case 6:
+                    if(listaServ.isEmpty()){
+                        System.out.println("Não há nenhum serviço cadastrado!");
+                        break;
+                    }
+                    int y = 0;
+                    System.out.println("1- Mais caro");
+                    System.out.println("2- Mais barato");
+                    System.out.println("3- Média do preço");
+                    System.out.println("4- Serviços acima da média");
+                    System.out.println("");
+                    y = plinio.nextInt();
+                    switch(y)
+                    {
+                        case 1:
+                            double maisCaro = 0;
+                            for(Servico s: listaServ){
+                                if(s.getPreco()>maisCaro){
+                                    maisCaro = s.getPreco();
+                                }
+                            }
+                            for(Servico s: listaServ){
+                                if(s.getPreco() == maisCaro){
+                                    System.out.println("O serviço mais caro é "+s.getDescricao()+" e custa "+s.getPreco()+" reais.");
+                                }
+                            }
+
+                            break;
+
+                        case 2:
+                            double maisBarato = 9999999;
+                            for(Servico s: listaServ){
+                                if(s.getPreco()<maisBarato){
+                                    maisBarato = s.getPreco();
+                                }
+                            }
+                            for(Servico s: listaServ){
+                                if(s.getPreco() == maisBarato){
+                                    System.out.println("O serviço mais barato é "+s.getDescricao()+" e custa "+s.getPreco()+" reais.");
+                                }
+                            }
+                            break;
+
+                        case 3:
+                            int qtdServicos = 0;
+                            double somaPrecoServicos = 0;
+                            double mediaServicos = 0;
+                            for(Servico s: listaServ){
+                                qtdServicos+=1;
+                                somaPrecoServicos += s.getPreco();
+                            }
+                            mediaServicos = somaPrecoServicos/qtdServicos;
+                            System.out.println("Média dos preços dos serviços é: "+mediaServicos);
+                            break;
+
+                        case 4:
+                            //mesmo calculo de media do ultimo case ( com alteraçoes nos nomes das variaveis)
+                            int qtd = 0;
+                            double soma = 0;
+                            double media = 0;
+                            for(Servico s: listaServ){
+                                qtd+=1;
+                                soma += s.getPreco();
+                            }
+                            mediaServicos = soma/qtd;
+
+                            int qtdMaiorMedia = 0;
+                            for(Servico s: listaServ){
+                                if(s.getPreco()>mediaServicos){
+                                    qtdMaiorMedia+=1;
+                                }
+                            }
+                            System.out.println("A quantidade de serviços com preços acima da média é: "+qtdMaiorMedia);
+                            break;
+
+                    }
 
 
 
 
             }
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             System.out.println("\n\n\n\n");
         }
     }
