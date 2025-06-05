@@ -201,6 +201,7 @@ public class Main {
                     if(listaCliente.isEmpty()){
                         System.out.println("Não há nenhum cliente cadastrado!");
                     }
+                    boolean clienteEncontrado = false;
                     for (Cliente cliente : listaCliente) {
                         if (cliente.getNome().startsWith(nomeCli)) {
                             System.out.println("---------------------------------------");
@@ -210,11 +211,11 @@ public class Main {
                             System.out.println("Carro: " + cliente.getCarro());
                             System.out.println("Placa: " + cliente.getPlaca());
                             System.out.println("---------------------------------------");
+                            clienteEncontrado = true;
                         }
-                        else{
-                            System.out.println("Cliente não encontrado!");
-                        }
-                        break;
+                    }
+                    if(!clienteEncontrado){
+                        System.out.println("Cliente não encontrado!");
                     }
 
 
@@ -230,6 +231,7 @@ public class Main {
                     if(listaServ.isEmpty()){
                         System.out.println("Não há nenhum serviço cadastrado!");
                     }
+                    boolean servicoEncontrado = false;
                     for (Servico servico : listaServ) {
                         if (servico.getCodServico() == codServico) {
                             System.out.println("---------------------------------------");
@@ -240,12 +242,16 @@ public class Main {
                             System.out.println("Comissão: " + servico.getComissao());
                             System.out.println("Preço: " + servico.getPreco());
                             System.out.println("---------------------------------------");
+                            servicoEncontrado = true;
                         }
-                        else{
-                            System.out.println("Serviço não encontrado!");
-                        }
-                      break;
+
                     }
+
+                    if(!servicoEncontrado){
+                        System.out.println("Serviço não encontrado!");
+                    }
+
+
 
                 break;
 
